@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "title": "截图标注与移动指针示例",
+  "language": "zh-CN",
+  "source_note": "通用界面概念示意，不是实际软件截图。使用时替换成自己的真实截图。",
+  "voice": {
+    "preset": "zh-xiaoxiao-broadcast"
+  },
+  "style": {
+    "pointer_scale": 1.1
+  },
+  "scenes": [
+    {
+      "title": "先试听，再选声音",
+      "image": "example-screen.png",
+      "kind": "通用界面示意 · 配置示例",
+      "footer": "这是配置示例；请替换成自己的实际截图和准确坐标。",
+      "narration": "先找到试听这一项，听一小段，确认喜欢这个声音，再制作完整视频。",
+      "highlights": [
+        {
+          "x": 60,
+          "y": 535,
+          "width": 1320,
+          "height": 140
+        }
+      ],
+      "callouts": [
+        {
+          "number": 1,
+          "x": 90,
+          "y": 580
+        }
+      ],
+      "pointer": {
+        "keyframes": [
+          {
+            "at": 0,
+            "x": 500,
+            "y": 200
+          },
+          {
+            "at": 0.55,
+            "x": 1150,
+            "y": 600,
+            "click": true
+          },
+          {
+            "at": 0.95,
+            "x": 1150,
+            "y": 600
+          }
+        ]
+      }
+    }
+  ]
+}

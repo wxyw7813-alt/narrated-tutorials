@@ -1,0 +1,21 @@
+# Local runtimes and private engine settings
+.venv/
+.qwen-venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+!.env.example
+local-engines.json
+**/local-engines.json
+models/
+private/
+recordings/
+reference-audio/
+# Generated work stays local; the reviewed sample uses docs/demo/
+result/
+results/
+auditions/
+work/
+*.log

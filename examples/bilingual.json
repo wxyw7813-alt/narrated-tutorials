@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "title": "中英双语字幕示例",
+  "language": "zh-CN",
+  "voice": {
+    "preset": "zh-xiaoxiao-broadcast"
+  },
+  "subtitles": {
+    "mode": "bilingual",
+    "burn_in": true,
+    "target_language": "en"
+  },
+  "scenes": [
+    {
+      "title": "先试听，再选声音",
+      "image": "example-screen.png",
+      "kind": "通用界面示意 · 双语配置示例",
+      "footer": "界面为概念示意；请按自己的实际截图修改。",
+      "narration": "先试听一小段。再选择喜欢的声音。",
+      "captions": [
+        {
+          "text": "先试听一小段。",
+          "translation": "Listen to a short preview first."
+        },
+        {
+          "text": "再选择喜欢的声音。",
+          "translation": "Then choose the voice you prefer."
+        }
+      ],
+      "pointer": {
+        "keyframes": [
+          {
+            "time": 0,
+            "x": 1150,
+            "y": 600
+          },
+          {
+            "caption": 2,
+            "offset": 0.2,
+            "x": 1150,
+            "y": 240,
+            "click": true
+          }
+        ]
+      },
+      "callouts": [
+        {
+          "number": 1,
+          "x": 1150,
+          "y": 240
+        }
+      ]
+    }
+  ],
+  "source_note": "通用界面概念示意，指针为后期动画；AI 合成旁白，不是软件实机录屏。"
+}

@@ -1,0 +1,7 @@
+1
+00:00:00,060 --> 00:00:01,200
+Listen to a short preview first.
+
+2
+00:00:01,500 --> 00:00:02,855
+Then choose the voice you prefer.

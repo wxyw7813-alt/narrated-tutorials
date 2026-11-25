@@ -1,0 +1,9 @@
+1
+00:00:00,060 --> 00:00:01,200
+先试听一小段。
+Listen to a short preview first.
+
+2
+00:00:01,500 --> 00:00:02,855
+再选择喜欢的声音。
+Then choose the voice you prefer.

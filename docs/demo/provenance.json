@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "style": {
+    "fps": 20,
+    "tail_seconds": 0.75,
+    "background": "#f4f7fc",
+    "accent": "#315de8",
+    "text": "#17243a",
+    "highlight": "#ffbf36",
+    "pointer_enabled": true,
+    "pointer_scale": 1.0,
+    "click_seconds": 0.5,
+    "picture_height": 600,
+    "caption_space": true
+  },
+  "subtitles": {
+    "mode": "bilingual",
+    "burn_in": true,
+    "gap_seconds": 0.12,
+    "source_language": "zh-CN",
+    "target_language": "en",
+    "max_font_size": 40
+  },
+  "audio_pipeline": "PCM scene intermediates; timestamp gaps reconciled at cuts; AAC encoded once after joining",
+  "synthetic_narration": true,
+  "seconds": 3.75,
+  "planned_seconds": 3.75,
+  "subtitle_note": "Caption units are timed from actual sentence PCM or explicitly provided aligned cues; bilingual lines share exact timestamps. No character-rate duration estimates.",
+  "source_note": "通用界面概念示意，指针为后期动画；AI 合成旁白，不是软件实机录屏。",
+  "scenes": [
+    {
+      "title": "先试听，再选声音",
+      "start": 0.0,
+      "duration": 3.75,
+      "audio_duration": 2.975,
+      "subtitle_timing": "measured-sentence-audio",
+      "narration_origin": "synthetic",
+      "voice_provenance": {
+        "provider": "caption-sentence-synthesis",
+        "units": [
+          {
+            "voice": {
+              "id": "zh-xiaoxiao-broadcast",
+              "language": "zh-CN",
+              "label": "中文 · 晓晓女声 · 明快播报",
+              "engine": "edge",
+              "voice": "zh-CN-XiaoxiaoNeural",
+              "rate": "+12%",
+              "pitch": "-3Hz",
+              "gender": "female",
+              "preset": "zh-xiaoxiao-broadcast"
+            },
+            "revision": 1
+          },
+          {
+            "voice": {
+              "id": "zh-xiaoxiao-broadcast",
+              "language": "zh-CN",
+              "label": "中文 · 晓晓女声 · 明快播报",
+              "engine": "edge",
+              "voice": "zh-CN-XiaoxiaoNeural",
+              "rate": "+12%",
+              "pitch": "-3Hz",
+              "gender": "female",
+              "preset": "zh-xiaoxiao-broadcast"
+            },
+            "revision": 1
+          }
+        ]
+      },
+      "clip": "000.mov",
+      "pointer_overlay": true,
+      "pointer_keyframes": [
+        {
+          "time": 0.0,
+          "x": 1282.5,
+          "y": 698.0,
+          "click": false
+        },
+        {
+          "time": 1.7,
+          "x": 1282.5,
+          "y": 428.0,
+          "click": true
+        }
+      ],
+      "container_duration": 3.75,
+      "pointer_note": "Teaching overlay; not real mouse interaction"
+    }
+  ],
+  "video_sha256": "a88d6bc8ced778243c2a7c2761dabab6de7677249071c3e74e6f39c5f6578d68"
+}

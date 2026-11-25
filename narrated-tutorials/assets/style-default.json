@@ -1,0 +1,11 @@
+{
+  "fps": 20,
+  "tail_seconds": 0.75,
+  "background": "#f4f7fc",
+  "accent": "#315de8",
+  "text": "#17243a",
+  "highlight": "#ffbf36",
+  "pointer_enabled": true,
+  "pointer_scale": 1.0,
+  "click_seconds": 0.5
+}

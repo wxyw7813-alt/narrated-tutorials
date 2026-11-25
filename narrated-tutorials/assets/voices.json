@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "presets": [
+    {
+      "id": "zh-xiaoxiao-broadcast",
+      "language": "zh-CN",
+      "label": "中文 · 晓晓女声 · 明快播报",
+      "engine": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "+12%",
+      "pitch": "-3Hz",
+      "gender": "female"
+    },
+    {
+      "id": "zh-zhiqing-youth",
+      "language": "zh-CN",
+      "label": "中文 · 知晴女声 · 青年普通话 / 本地设计",
+      "engine": "qwen-design",
+      "gender": "female",
+      "instruct": "一位二十八岁左右的中国青年女性，地道的标准普通话，声音清朗温润，中音稍偏低，年轻稳健，有清晰通透的共鸣，气息平稳，大方自信。采用专业纪录片青年女主持人的自然讲解语气，节奏舒展，字音准确，咬字清楚，句尾利落。",
+      "seed": 202,
+      "temperature": 0.7,
+      "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+      "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
+      "audition_status": "retained-by-skill-owner-2026-11-21"
+    },
+    {
+      "id": "zh-yunxi-conversation",
+      "language": "zh-CN",
+      "label": "中文 · 云希男声 · 交流讲解",
+      "engine": "edge",
+      "voice": "zh-CN-YunxiNeural",
+      "rate": "+0%",
+      "pitch": "-2Hz",
+      "gender": "male"
+    },
+    {
+      "id": "zh-minglang-youth",
+      "language": "zh-CN",
+      "label": "中文 · 明朗男声 · 青年普通话 / 本地设计",
+      "engine": "qwen-design",
+      "gender": "male",
+      "instruct": "一位二十六岁左右的中国青年男性，地道的标准普通话，青年主持人音色，声音清朗明亮，干净通透，阳光自信，厚度适中，大气有精神。发音准确，吐字清晰，声音结实自然，语速适中，讲解连贯，重音明确，语气从容有感染力。",
+      "seed": 303,
+      "temperature": 0.7,
+      "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+      "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
+      "audition_status": "retained-by-skill-owner-2026-11-21"
+    },
+    {
+      "id": "zh-xiuyuan-youth",
+      "language": "zh-CN",
+      "label": "中文 · 修远男声 · 青年普通话 / 本地设计",
+      "engine": "qwen-design",
+      "gender": "male",
+      "instruct": "一位三十岁左右的中国青年男性，标准普通话，音色清亮沉稳，中音略偏低但年轻有活力，共鸣饱满通透，气息扎实，声音大方自信。采用专业科普青年男主持人的自然讲解方式，发音地道，吐字干净清楚，语速适中，节奏有层次，句尾利落。",
+      "seed": 404,
+      "temperature": 0.7,
+      "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+      "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
+      "audition_status": "retained-by-skill-owner-2026-11-21"
+    },
+    {
+      "id": "en-aria-clear",
+      "language": "en-US",
+      "label": "English · Aria · female / US",
+      "engine": "edge",
+      "voice": "en-US-AriaNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "female"
+    },
+    {
+      "id": "en-sonia-british",
+      "language": "en-GB",
+      "label": "English · Sonia · female / UK",
+      "engine": "edge",
+      "voice": "en-GB-SoniaNeural",
+      "rate": "+0%",
+      "pitch": "+0Hz",
+      "gender": "female"
+    },
+    {
+      "id": "en-heart-local",
+      "language": "en-US",
+      "label": "English · Heart · female / offline Kokoro",
+      "engine": "kokoro",
+      "voice": "af_heart",
+      "speed": 0.98,
+      "gender": "female"
+    },
+    {
+      "id": "en-guy-steady",
+      "language": "en-US",
+      "label": "English · Guy · male / US",
+      "engine": "edge",
+      "voice": "en-US-GuyNeural",
+      "rate": "-3%",
+      "pitch": "+0Hz",
+      "gender": "male"
+    },
+    {
+      "id": "en-ryan-friendly",
+      "language": "en-GB",
+      "label": "English · Ryan · male / UK / friendly",
+      "engine": "edge",
+      "voice": "en-GB-RyanNeural",
+      "gender": "male",
+      "rate": "+0%",
+      "pitch": "+0Hz"
+    },
+    {
+      "id": "en-brian-conversation",
+      "language": "en-US",
+      "label": "English · Brian · male / US / conversational",
+      "engine": "edge",
+      "voice": "en-US-BrianNeural",
+      "gender": "male",
+      "rate": "+0%",
+      "pitch": "+0Hz"
+    }
+  ]
+}
