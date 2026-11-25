@@ -16,7 +16,7 @@
 
 ## 能做什么
 
-- 中文、英文配音，先试听再选声音。目前有 **11 种预设**：中文女声 2 种，其余三组各 3 种；清澄已按创建者反馈移除。
+- 中文、英文配音，先试听再选声音。目前有 **10 种预设**：中文女声、中文男声各 2 种，英文女声、英文男声各 3 种；清澄已按创建者反馈移除。
 - 单语或中英双语字幕，直接显示在画面上，同时导出 SRT、VTT。
 - 根据每句实际配音安排字幕、画面和指针；更换声线后重新计算时间。
 - 截图编号、高亮框、移动指针、点击光圈；也可导入已有录屏或配音。
@@ -29,7 +29,7 @@
 | 类别 | 保留声线 |
 |---|---|
 | 中文女声 | 晓晓、知晴 |
-| 中文男声 | 承岳、明朗、修远（沉稳版） |
+| 中文男声 | 承岳、明朗 |
 | 英文女声 | Aria、Sonia、Heart |
 | 英文男声 | Guy、Ryan、Brian |
 
@@ -39,12 +39,12 @@
 
 新项目没有指定声音时，助手会主动在对话中显示 2–3 个可点击播放的短音频，等你回复名字后再制作。想多听几个可以说“全部给我听”；明确说“用晓晓”或“沿用上次”时直接使用，不重复选声。
 
-Skill 内置 11 段约 9–19 秒的通用 AI 合成样音。承岳替换原云希，修远调整为语调更平稳、音色更有磁性的设计目标；这两个新版本仍需使用者试听判断。**试听不联网，也不需要先安装声音模型。** 制作新旁白时才需要对应声音引擎；固定样音不代表模型已经安装，也不保证 Qwen 在新文本上保持同一声纹。
+Skill 内置 10 段约 9–19 秒的通用 AI 合成样音。承岳已由创建者试听选定并替换原云希，修远已移除；其他使用者可按自己的听感选择。**试听不联网，也不需要先安装声音模型。** 制作新旁白时才需要对应声音引擎；固定样音不代表模型已经安装，也不保证 Qwen 在新文本上保持同一声纹。
 
 | 类别 | 点击文件试听 |
 |---|---|
 | 中文女声 | [晓晓](narrated-tutorials/assets/auditions/zh-xiaoxiao-broadcast.mp3) · [知晴](narrated-tutorials/assets/auditions/zh-zhiqing-youth.mp3) |
-| 中文男声 | [承岳](narrated-tutorials/assets/auditions/zh-chengyue-steady.mp3) · [明朗](narrated-tutorials/assets/auditions/zh-minglang-youth.mp3) · [修远·沉稳版](narrated-tutorials/assets/auditions/zh-xiuyuan-youth.mp3) |
+| 中文男声 | [承岳](narrated-tutorials/assets/auditions/zh-chengyue-steady.mp3) · [明朗](narrated-tutorials/assets/auditions/zh-minglang-youth.mp3) |
 | 英文女声 | [Aria](narrated-tutorials/assets/auditions/en-aria-clear.mp3) · [Sonia](narrated-tutorials/assets/auditions/en-sonia-british.mp3) · [Heart](narrated-tutorials/assets/auditions/en-heart-local.mp3) |
 | 英文男声 | [Guy](narrated-tutorials/assets/auditions/en-guy-steady.mp3) · [Ryan](narrated-tutorials/assets/auditions/en-ryan-friendly.mp3) · [Brian](narrated-tutorials/assets/auditions/en-brian-conversation.mp3) |
 

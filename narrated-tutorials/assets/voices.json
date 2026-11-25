@@ -35,7 +35,7 @@
       "temperature": 0.5,
       "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
       "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
-      "audition_status": "revised-awaiting-user-feedback-2026-11-25"
+      "audition_status": "retained-by-skill-owner-2026-11-25"
     },
     {
       "id": "zh-minglang-youth",
@@ -49,19 +49,6 @@
       "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
       "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
       "audition_status": "retained-by-skill-owner-2026-11-21"
-    },
-    {
-      "id": "zh-xiuyuan-youth",
-      "language": "zh-CN",
-      "label": "中文 · 修远男声 · 沉稳磁性 / 本地设计",
-      "engine": "qwen-design",
-      "gender": "male",
-      "instruct": "一位三十岁左右的中国青年男性，地道标准普通话，专业知识课程男讲师的声音。音色低沉醇厚，清晰有质感，带自然磁性和饱满共鸣，大气端正，年轻稳重。用稳定平缓的音高连续讲解，语调克制，起伏很小，重音轻而自然，句尾平稳落下，语速适中，字音准确，吐字清楚。声音从容舒展，节奏均匀，亲切可信，不忽高忽低，不拖长尾音，不使用戏剧化悬念语气，不刻意压嗓。",
-      "seed": 1404,
-      "temperature": 0.5,
-      "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
-      "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
-      "audition_status": "revised-awaiting-user-feedback-2026-11-25"
     },
     {
       "id": "en-aria-clear",

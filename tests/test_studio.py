@@ -85,18 +85,18 @@ class Tests(unittest.TestCase):
         import subprocess,sys
         # -S excludes site-packages, including Pillow and all TTS dependencies.
         clean=json.loads(subprocess.check_output([sys.executable,'-S',str(studio.ROOT/'scripts/studio.py'),'listen','--language','all','--output',str(self.root/'clean-python')]))
-        self.assertEqual(len(clean['samples']),11)
+        self.assertEqual(len(clean['samples']),10)
         args=argparse.Namespace(output=str(self.root/'listen'),language='all',gender=None)
         with patch.object(studio,'synthesize',side_effect=AssertionError('No synthesis allowed')),patch.object(studio,'tool',side_effect=AssertionError('No media tools needed')):
             result=studio.listening_pack(args)
-        self.assertEqual(len(result['samples']),11)
-        self.assertNotIn('zh-qingcheng-youth',[x['id'] for x in result['samples']])
+        self.assertEqual(len(result['samples']),10)
+        self.assertTrue({'zh-qingcheng-youth','zh-yunxi-conversation','zh-xiuyuan-youth'}.isdisjoint(x['id'] for x in result['samples']))
         for item in result['samples']:
             self.assertEqual(Path(item['audio']).read_bytes(),(studio.ROOT/'assets/auditions'/item['file']).read_bytes())
             self.assertIn(item['audio'],Path(result['markdown']).read_text())
         self.assertTrue(Path(result['page']).is_file());self.assertFalse(Handler.calls)
     def test_bundled_auditions_filter_language_and_gender(self):
-        for language,gender,count in [('zh','female',2),('zh','male',3),('en','female',3),('en','male',3)]:
+        for language,gender,count in [('zh','female',2),('zh','male',2),('en','female',3),('en','male',3)]:
             result=studio.listening_pack(argparse.Namespace(output=str(self.root/f'{language}-{gender}'),language=language,gender=gender))
             self.assertEqual(len(result['samples']),count)
             self.assertTrue(all(s['language'].startswith(language) and s['gender']==gender for s in result['samples']))

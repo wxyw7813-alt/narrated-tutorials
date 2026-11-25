@@ -29,9 +29,9 @@
     "file": "zh-chengyue-steady.mp3",
     "seconds": 10.4,
     "sha256": "6f428299c1e0a5116891ba9ef52a068183ccc5e415bc009a46009b4db4455561",
-    "preset_sha256": "27ac36e769cbfdf355f53667bec1ee264435a7c5dd756df84c81e6cc4e27702a",
+    "preset_sha256": "1035248e860192fd6b3d0404ee5fd0b76aaeed5a19ef6cbc09adaf868e2b82f6",
     "origin": "Local synthetic voice design from description; no reference recording or human clone.",
-    "audition_status": "revised-awaiting-user-feedback-2026-11-25"
+    "audition_status": "retained-by-skill-owner-2026-11-25"
   },
   {
     "id": "zh-minglang-youth",
@@ -43,18 +43,6 @@
     "sha256": "9988b1ec6c0bccd6598292c6281526d62a5af6fbe0e5fc7fb1a3ec48e6bbea12",
     "preset_sha256": "b02597505bfcb1a62e86796b1e832d778f14d4c1bdacd03af177761979961ad2",
     "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
-  },
-  {
-    "id": "zh-xiuyuan-youth",
-    "label": "中文 · 修远男声 · 沉稳磁性 / 本地设计",
-    "language": "zh-CN",
-    "gender": "male",
-    "file": "zh-xiuyuan-youth.mp3",
-    "seconds": 9.44,
-    "sha256": "c72d855f09ceed496844d89f77abff9a46ab579881b78567b4190c17d4fc7e01",
-    "preset_sha256": "21f00ddb160df8480c94c573e31a034d02d0b40577261a81f9b5279795574276",
-    "origin": "Local synthetic voice design from description; no reference recording or human clone.",
-    "audition_status": "revised-awaiting-user-feedback-2026-11-25"
   },
   {
     "id": "en-aria-clear",
