@@ -25,7 +25,7 @@ python3 scripts/studio.py listen --language en --gender female --output ./auditi
 
 ## 生成自己的试听
 
-`voices` 显示声线 ID、性别和设置。目录包含中文女声 2 种，其余三组各 3 种，共 11 种；知晴、明朗、修远是本地 Qwen 设计的青年普通话预设，按 [qwen-design.md](qwen-design.md) 准备运行环境。音色是否符合要求以试听为准。`audition --language zh|en|all --output DIR --allow-online` 生成可在浏览器打开的 `index.html` 及 MP3；可用 `--preset ID --text '试听内容'` 只生成一条。
+`voices` 显示声线 ID、性别和设置。目录包含中文女声 2 种，其余三组各 3 种，共 11 种；知晴、承岳、明朗、修远是本地 Qwen 设计的青年普通话预设，按 [qwen-design.md](qwen-design.md) 准备运行环境。音色是否符合要求以试听为准。`audition --language zh|en|all --output DIR --allow-online` 生成可在浏览器打开的 `index.html` 及 MP3；可用 `--preset ID --text '试听内容'` 只生成一条。
 
 在线声线通过 edge-tts 调用 Microsoft Edge 在线语音，不是本地开源模型，也不承诺持续可用或生产服务保障。报错时保留已有结果，处理服务/网络问题后再试，不能静默换成机械系统音。
 

@@ -9,8 +9,8 @@
 | Pillow | 排版卡片与截图，画编号、高亮框、指针和点击光圈素材 | 已实现并实测 |
 | FFmpeg | 合成画面、动画指针、配音、音量、单语/双语画面字幕和可选字幕轨，导出 MP4 | 已实现并实测；overlay 叠加指针，split 复用点击光圈 |
 | ffprobe + FFmpeg 解码 | 检查时长、分辨率、音轨、字幕及文件能否完整播放 | 已使用；不代替人工听感检查 |
-| edge-tts / Microsoft 在线语音 | 晓晓、云希等在线预设配音 | 已生成试听；旁白文本会发给该服务 |
-| Qwen3-TTS + MLX-Audio / MLX | 在 Apple Silicon 本机按描述生成中文青年声线 | 三种保留声线已实测；不是声音克隆 |
+| edge-tts / Microsoft 在线语音 | 晓晓等在线预设配音 | 已生成试听；旁白文本会发给该服务 |
+| Qwen3-TTS + MLX-Audio / MLX | 在 Apple Silicon 本机按描述生成中文青年声线 | 四种声线已生成实测试听；不是声音克隆 |
 | Kokoro-ONNX / ONNX Runtime | 在本机生成英文 Heart 女声 | 已实测；需要单独准备模型和 voice 文件 |
 | VoiceStudio 本地 HTTP 接口 | 用本人或授权参考录音生成新旁白 | 适配代码和协议测试完成；未在真实 VoiceStudio 模型上完成本人声音克隆实测 |
 | Excalidraw 文件格式 / SVG | 保存可编辑的流程图，方便别人改图 | 已生成源文件；本次图由代码绘制，未在 Excalidraw 网页手绘 |
@@ -22,7 +22,7 @@
 ## 开发中额外使用过什么
 
 - Hugging Face Hub / HTTPS：下载公开模型、固定修订并核对散列，不是每次生成视频都必须联网。
-- Qwen 官方免费演示 / gradio_client：本地模型下载阶段测试过三段设计样音，第四段遇到免费额度限制。最终分享目录中的三段保留的中文设计样音已改用本地模型生成；演示站不属于 Skill 的运行依赖。
+- Qwen 官方免费演示 / gradio_client：本地模型下载阶段测试过三段设计样音，第四段遇到免费额度限制。最终分享目录中的四段当前中文设计样音已改用本地模型生成；演示站不属于 Skill 的运行依赖。
 - skill-creator 的初始化和校验脚本：生成 Skill 目录、检查 frontmatter 与文件结构，不负责视频合成。
 - 原安装教程的 Word 附件另用过 python-docx 与 LibreOffice 渲染；它们不属于这套视频 Skill 的必要依赖。
 

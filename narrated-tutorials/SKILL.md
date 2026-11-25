@@ -10,7 +10,7 @@ description: Create narrated tutorial or explainer videos from steps, screenshot
 ## 工作方式
 
 1. 明确语言、受众和材料来源。已有截图做图文教程，已有录屏可剪入视频；需要实机录制时用当前环境实际提供的录屏工具，不能把静态截图称为实机操作。不会因生成了教程就声称安装操作已经完成。
-2. 新项目未指定声线时，按 [references/voice-selection.md](references/voice-selection.md) 主动在对话中展示 2–3 段可播放短音频，等用户选声后再批量合成；不能只给声线名称或网页链接。用 `listen` 导出内置试听，无需联网或下载模型。用户明确指定或要求沿用上次时直接继续；已有偏好用于排列候选。`assets/voices.json` 提供 11 种：中文女声 2 种，中文男声、英文女声和英文男声各 3 种（含离线 Heart）。其中三种中文青年音是本地 Qwen 声音设计预设，读 [references/qwen-design.md](references/qwen-design.md) 准备模型与本机配置。它们按标准普通话、大气清朗、吐字清晰的目标设计，本 Skill 创建者已选择保留，其他使用者仍应试听；固定描述和随机种子不保证跨文本声纹完全不变。风格标签是选择提示，不保证每个人都觉得自然。
+2. 新项目未指定声线时，按 [references/voice-selection.md](references/voice-selection.md) 主动在对话中展示 2–3 段可播放短音频，等用户选声后再批量合成；不能只给声线名称或网页链接。用 `listen` 导出内置试听，无需联网或下载模型。用户明确指定或要求沿用上次时直接继续；已有偏好用于排列候选。`assets/voices.json` 提供 11 种：中文女声 2 种，中文男声、英文女声和英文男声各 3 种（含离线 Heart）。其中四种中文青年音是本地 Qwen 声音设计预设，读 [references/qwen-design.md](references/qwen-design.md) 准备模型与本机配置。它们按标准普通话、大气清朗、吐字清晰的目标设计，当前标签表示设计目标，效果需要试听确认；固定描述和随机种子不保证跨文本声纹完全不变。风格标签是选择提示，不保证每个人都觉得自然。
 3. 按 [references/usage.md](references/usage.md) 准备独立 Python 环境并运行 `doctor`。FFmpeg、字体、Python 解释器都在使用者的电脑上解析，不写死作者路径。
 4. 在线预设使用 edge-tts，会把旁白文字发给 Microsoft。按用户当前授权范围选择在线或离线路径；仅在已授权时传 `--allow-online`。不能因为离线引擎失败就悄悄改走在线、付费服务或换声线。
 5. 使用自己的声音时读 [references/voicestudio.md](references/voicestudio.md)。需要本人录音或声音所有者明确授权、干净短音频及准确转录。缺少音频时仍完成可独立开发的部分，说明尚未实测本人声线；不能拿网上人物音频代替。第一版本地适配器只连接 loopback 地址，拒绝重定向；不自动安装 VoiceStudio、不接受模型条款、不下载大模型。

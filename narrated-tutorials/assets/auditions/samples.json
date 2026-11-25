@@ -22,15 +22,16 @@
     "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
   },
   {
-    "id": "zh-yunxi-conversation",
-    "label": "中文 · 云希男声 · 交流讲解",
+    "id": "zh-chengyue-steady",
+    "label": "中文 · 承岳男声 · 大气磁性 / 本地设计",
     "language": "zh-CN",
     "gender": "male",
-    "file": "zh-yunxi-conversation.mp3",
-    "seconds": 10.584,
-    "sha256": "6315f9060ea01baafd1c7792a78b9b65251d125e6b640558381cb1d3d16ae282",
-    "preset_sha256": "f7543a0e5383b55ecd2c2c14f6b0637ce32d96a84dabc79edb84d9bb61266851",
-    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+    "file": "zh-chengyue-steady.mp3",
+    "seconds": 10.4,
+    "sha256": "6f428299c1e0a5116891ba9ef52a068183ccc5e415bc009a46009b4db4455561",
+    "preset_sha256": "27ac36e769cbfdf355f53667bec1ee264435a7c5dd756df84c81e6cc4e27702a",
+    "origin": "Local synthetic voice design from description; no reference recording or human clone.",
+    "audition_status": "revised-awaiting-user-feedback-2026-11-25"
   },
   {
     "id": "zh-minglang-youth",
@@ -45,14 +46,15 @@
   },
   {
     "id": "zh-xiuyuan-youth",
-    "label": "中文 · 修远男声 · 青年普通话 / 本地设计",
+    "label": "中文 · 修远男声 · 沉稳磁性 / 本地设计",
     "language": "zh-CN",
     "gender": "male",
     "file": "zh-xiuyuan-youth.mp3",
-    "seconds": 16.88,
-    "sha256": "2cdd46199988951a6959b19a0a03e06989358f66b723438559cc4bc9e5c4221d",
-    "preset_sha256": "e362c4b34983740f5145b824c88e1f7ddd3fe57d73d4603e493adb7867c5027a",
-    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+    "seconds": 9.44,
+    "sha256": "c72d855f09ceed496844d89f77abff9a46ab579881b78567b4190c17d4fc7e01",
+    "preset_sha256": "21f00ddb160df8480c94c573e31a034d02d0b40577261a81f9b5279795574276",
+    "origin": "Local synthetic voice design from description; no reference recording or human clone.",
+    "audition_status": "revised-awaiting-user-feedback-2026-11-25"
   },
   {
     "id": "en-aria-clear",
