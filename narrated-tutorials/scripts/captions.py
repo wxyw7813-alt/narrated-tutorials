@@ -8,7 +8,6 @@ import math
 import re
 import sys
 import wave
-from PIL import Image,ImageDraw,ImageFont
 
 def config(raw=None,source_language=None):
     target='zh' if str(source_language or '').startswith('en') else 'en'
@@ -138,6 +137,7 @@ def wrapped(text,font,width):
     return result
 
 def overlay_assets(cues,settings,work,fontfile):
+    from PIL import Image,ImageDraw,ImageFont
     outputs=[]
     for i,cue in enumerate(cues):
         lines=None

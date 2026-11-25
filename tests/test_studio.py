@@ -82,6 +82,10 @@ class Tests(unittest.TestCase):
         self.assertFalse(Handler.calls)
     def test_bundled_auditions_work_without_synthesis_or_tools(self):
         from unittest.mock import patch
+        import subprocess,sys
+        # -S excludes site-packages, including Pillow and all TTS dependencies.
+        clean=json.loads(subprocess.check_output([sys.executable,'-S',str(studio.ROOT/'scripts/studio.py'),'listen','--language','all','--output',str(self.root/'clean-python')]))
+        self.assertEqual(len(clean['samples']),11)
         args=argparse.Namespace(output=str(self.root/'listen'),language='all',gender=None)
         with patch.object(studio,'synthesize',side_effect=AssertionError('No synthesis allowed')),patch.object(studio,'tool',side_effect=AssertionError('No media tools needed')):
             result=studio.listening_pack(args)

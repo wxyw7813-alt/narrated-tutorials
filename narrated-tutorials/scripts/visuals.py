@@ -5,7 +5,6 @@ These overlays illustrate actions; they never click the user's real desktop.
 import json
 import math
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,6 +21,7 @@ def settings(overrides=None):
     return result
 
 def image_placement(size,height=670):
+    from PIL import Image, ImageOps
     # Must match the screenshot area in studio.make_card.
     w, h = ImageOps.contain(Image.new('L',size), (1720,height)).size
     return (1920-w)//2, 248+(height-h)//2, w, h
@@ -41,6 +41,7 @@ def pointer_plan(scene,seconds,base,style=None):
     if space not in ('image','frame'):
         raise ValueError('pointer.space must be image or frame')
     if space=='image':
+        from PIL import Image
         if not scene.get('image'):
             raise ValueError('Image-space pointer requires scene.image')
         source=Path(scene['image']).expanduser()
@@ -83,6 +84,7 @@ def expression(plan,axis):
     return f'if(lt(t,{plan[0]["time"]:.6f}),{plan[0][axis]:.4f},{expr})'
 
 def cursor_assets(work,style):
+    from PIL import Image, ImageDraw
     scale=style['pointer_scale'];aa=3
     w,h=round(64*scale),round(84*scale)
     im=Image.new('RGBA',(w*aa,h*aa))
