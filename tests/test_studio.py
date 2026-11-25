@@ -80,6 +80,36 @@ class Tests(unittest.TestCase):
         v={'engine':'qwen-design','python':str(self.root/'no-python'),'model':str(self.root/'no-model'),'instruct':'Youth Mandarin voice'}
         with self.assertRaisesRegex(ValueError,'model path'):self.generate(v)
         self.assertFalse(Handler.calls)
+    def test_bundled_auditions_work_without_synthesis_or_tools(self):
+        from unittest.mock import patch
+        args=argparse.Namespace(output=str(self.root/'listen'),language='all',gender=None)
+        with patch.object(studio,'synthesize',side_effect=AssertionError('No synthesis allowed')),patch.object(studio,'tool',side_effect=AssertionError('No media tools needed')):
+            result=studio.listening_pack(args)
+        self.assertEqual(len(result['samples']),11)
+        self.assertNotIn('zh-qingcheng-youth',[x['id'] for x in result['samples']])
+        for item in result['samples']:
+            self.assertEqual(Path(item['audio']).read_bytes(),(studio.ROOT/'assets/auditions'/item['file']).read_bytes())
+            self.assertIn(item['audio'],Path(result['markdown']).read_text())
+        self.assertTrue(Path(result['page']).is_file());self.assertFalse(Handler.calls)
+    def test_bundled_auditions_filter_language_and_gender(self):
+        for language,gender,count in [('zh','female',2),('zh','male',3),('en','female',3),('en','male',3)]:
+            result=studio.listening_pack(argparse.Namespace(output=str(self.root/f'{language}-{gender}'),language=language,gender=gender))
+            self.assertEqual(len(result['samples']),count)
+            self.assertTrue(all(s['language'].startswith(language) and s['gender']==gender for s in result['samples']))
+    def test_bundled_auditions_reject_damaged_or_changed_presets(self):
+        from unittest.mock import patch
+        import shutil
+        private_skill=self.root/'skill';shutil.copytree(studio.ROOT/'assets/auditions',private_skill/'assets/auditions')
+        args=argparse.Namespace(output=str(self.root/'listen'),language='zh',gender='female')
+        entry=json.loads((private_skill/'assets/auditions/samples.json').read_text())[0]
+        sample=private_skill/'assets/auditions'/entry['file'];original=sample.read_bytes();sample.write_bytes(b'corrupted')
+        with patch.object(studio,'ROOT',private_skill):
+            with self.assertRaisesRegex(ValueError,'damaged'):studio.listening_pack(args)
+        self.assertFalse(Path(args.output).exists())
+        sample.write_bytes(original)
+        changed=[dict(v,rate='+99%') if v['id']==entry['id'] else v for v in studio.PRESETS]
+        with patch.object(studio,'PRESETS',changed):
+            with self.assertRaisesRegex(ValueError,'outdated'):studio.listening_pack(args)
     def test_provided_caption_boundaries(self):
         scene={'narration':'First. Second.','captions':[{'text':'First.','start':.1,'end':1},{'text':'Second.','start':1.3,'end':2.4}]}
         cues=studio.captions.supplied(scene,studio.captions.config(),3)

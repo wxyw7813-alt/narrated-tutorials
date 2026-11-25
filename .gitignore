@@ -16,6 +16,6 @@ reference-audio/
 # Generated work stays local; the reviewed sample uses docs/demo/
 result/
 results/
-auditions/
+/auditions/
 work/
 *.log

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "zh-xiaoxiao-broadcast",
+    "label": "中文 · 晓晓女声 · 明快播报",
+    "language": "zh-CN",
+    "gender": "female",
+    "file": "zh-xiaoxiao-broadcast.mp3",
+    "seconds": 9.432,
+    "sha256": "a63be3bdfe78cb4b389c17944fe2930946ac0c062a4294e385b3b0e3fd7fe5ff",
+    "preset_sha256": "d719a62b0e80c8f59a8fc5cf550ed01dca39f6c6c7395b007b02494e906a9903",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "zh-zhiqing-youth",
+    "label": "中文 · 知晴女声 · 青年普通话 / 本地设计",
+    "language": "zh-CN",
+    "gender": "female",
+    "file": "zh-zhiqing-youth.mp3",
+    "seconds": 17.04,
+    "sha256": "2f2240d3e36b3946ac754259967a4a673c2a317365aef0b22726abdd850e1217",
+    "preset_sha256": "8b310d0660278e1a60f0df8d86c266bb82c9cd7d815db35f6edf55fa3833a660",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "zh-yunxi-conversation",
+    "label": "中文 · 云希男声 · 交流讲解",
+    "language": "zh-CN",
+    "gender": "male",
+    "file": "zh-yunxi-conversation.mp3",
+    "seconds": 10.584,
+    "sha256": "6315f9060ea01baafd1c7792a78b9b65251d125e6b640558381cb1d3d16ae282",
+    "preset_sha256": "f7543a0e5383b55ecd2c2c14f6b0637ce32d96a84dabc79edb84d9bb61266851",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "zh-minglang-youth",
+    "label": "中文 · 明朗男声 · 青年普通话 / 本地设计",
+    "language": "zh-CN",
+    "gender": "male",
+    "file": "zh-minglang-youth.mp3",
+    "seconds": 18.16,
+    "sha256": "9988b1ec6c0bccd6598292c6281526d62a5af6fbe0e5fc7fb1a3ec48e6bbea12",
+    "preset_sha256": "b02597505bfcb1a62e86796b1e832d778f14d4c1bdacd03af177761979961ad2",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "zh-xiuyuan-youth",
+    "label": "中文 · 修远男声 · 青年普通话 / 本地设计",
+    "language": "zh-CN",
+    "gender": "male",
+    "file": "zh-xiuyuan-youth.mp3",
+    "seconds": 16.88,
+    "sha256": "2cdd46199988951a6959b19a0a03e06989358f66b723438559cc4bc9e5c4221d",
+    "preset_sha256": "e362c4b34983740f5145b824c88e1f7ddd3fe57d73d4603e493adb7867c5027a",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "en-aria-clear",
+    "label": "English · Aria · female / US",
+    "language": "en-US",
+    "gender": "female",
+    "file": "en-aria-clear.mp3",
+    "seconds": 10.656,
+    "sha256": "69e454177f7f091ecd4af070b091effa42e9065b1fdf87037ea86b9e1688cb5d",
+    "preset_sha256": "f526f9c650ebeb21a0f0feb7a79e848ff6a17ffa54bfb396e9e5e9469146e1ae",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "en-sonia-british",
+    "label": "English · Sonia · female / UK",
+    "language": "en-GB",
+    "gender": "female",
+    "file": "en-sonia-british.mp3",
+    "seconds": 9.864,
+    "sha256": "b38cb2970a41d769a36f71c280b14710b3b35605c6a315fb3f89403ab0884237",
+    "preset_sha256": "1dbc0ef6f608112c5e0b59ff1f565e79b823d23ec57980fea54e5dd4d4db0e23",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "en-heart-local",
+    "label": "English · Heart · female / offline Kokoro",
+    "language": "en-US",
+    "gender": "female",
+    "file": "en-heart-local.mp3",
+    "seconds": 12.097958,
+    "sha256": "fd224ede7362c94b483da6e397c20422ae9dd931420f50251db02be92aca3d58",
+    "preset_sha256": "91e8ed9309529f17106006ac6d830f5c87ffb0765ce16e604931efb301f35d83",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "en-guy-steady",
+    "label": "English · Guy · male / US",
+    "language": "en-US",
+    "gender": "male",
+    "file": "en-guy-steady.mp3",
+    "seconds": 10.728,
+    "sha256": "e59f86fec1f4c8930d0f584ac10c9ac81667aeadf8f3a5857a0da5a2af1a25f4",
+    "preset_sha256": "16c33775df2a85a48613142eae46ee6617d4240e7d1051170a66ac0450671f96",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "en-ryan-friendly",
+    "label": "English · Ryan · male / UK / friendly",
+    "language": "en-GB",
+    "gender": "male",
+    "file": "en-ryan-friendly.mp3",
+    "seconds": 10.392,
+    "sha256": "f54ecfc0a1b42cf88412ffa476a4efd2e06bc672c12d6877b4df23a75bd351e2",
+    "preset_sha256": "c88b90949824b02562a6159d24395bdba261d71d5042317693a5d6de216ed712",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  },
+  {
+    "id": "en-brian-conversation",
+    "label": "English · Brian · male / US / conversational",
+    "language": "en-US",
+    "gender": "male",
+    "file": "en-brian-conversation.mp3",
+    "seconds": 9.432,
+    "sha256": "67cef601ced19edbc468eb9b04ffea642f11675a2ea8495d4ce1efd57704a16e",
+    "preset_sha256": "545ddd1d1eedef8777d389c7e8d790e4e61d4290befff6ff854279cf898658db",
+    "origin": "Previously generated synthetic speech; not a reference recording or a person's voice clone."
+  }
+]

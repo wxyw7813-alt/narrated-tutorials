@@ -12,7 +12,18 @@ python3 -m venv .venv
 
 macOS 若没有 FFmpeg，可通过已经安装的 Homebrew 执行 `brew install ffmpeg`，或使用 FFmpeg 官方链接的发行包。先检查实际环境，无需为了本 Skill 重装已有工具。
 
-## 选声线
+## 先听再选，无需先装模型
+
+新项目未指定声线时，助手主动提供可播放短音频，用户回复名字后再制作。已明确指定或要求沿用上次则直接继续。详见 [voice-selection.md](voice-selection.md)。
+
+```sh
+python3 scripts/studio.py listen --language zh --output ./auditions
+python3 scripts/studio.py listen --language en --gender female --output ./auditions
+```
+
+`listen` 使用内置的 11 段通用 AI 合成样音，只需要 Python 3.11+ 标准库，不联网、不调用 TTS、不要求声音模型。输出音频路径、试听页和内嵌 Markdown；助手应优先在对话中显示音频。选择页可以生成回复语句或下载声线配置，不能直接替用户发消息。制作新旁白仍需相应引擎和运行环境。
+
+## 生成自己的试听
 
 `voices` 显示声线 ID、性别和设置。目录包含中文女声 2 种，其余三组各 3 种，共 11 种；知晴、明朗、修远是本地 Qwen 设计的青年普通话预设，按 [qwen-design.md](qwen-design.md) 准备运行环境。音色是否符合要求以试听为准。`audition --language zh|en|all --output DIR --allow-online` 生成可在浏览器打开的 `index.html` 及 MP3；可用 `--preset ID --text '试听内容'` 只生成一条。
 

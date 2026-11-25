@@ -35,6 +35,32 @@
 
 [再看英文 Heart 完整示范](docs/demo/english-heart.mp4)（步骤卡片与概念图，AI 合成旁白）。
 
+## 先听，再选择
+
+新项目没有指定声音时，助手会主动在对话中显示 2–3 个可点击播放的短音频，等你回复名字后再制作。想多听几个可以说“全部给我听”；明确说“用晓晓”或“沿用上次”时直接使用，不重复选声。
+
+Skill 内置 11 段约 9–19 秒的通用 AI 合成样音。**试听不联网，也不需要先安装声音模型。** 制作新旁白时才需要对应声音引擎；固定样音不代表模型已经安装，也不保证 Qwen 在新文本上保持同一声纹。
+
+| 类别 | 点击文件试听 |
+|---|---|
+| 中文女声 | [晓晓](narrated-tutorials/assets/auditions/zh-xiaoxiao-broadcast.mp3) · [知晴](narrated-tutorials/assets/auditions/zh-zhiqing-youth.mp3) |
+| 中文男声 | [云希](narrated-tutorials/assets/auditions/zh-yunxi-conversation.mp3) · [明朗](narrated-tutorials/assets/auditions/zh-minglang-youth.mp3) · [修远](narrated-tutorials/assets/auditions/zh-xiuyuan-youth.mp3) |
+| 英文女声 | [Aria](narrated-tutorials/assets/auditions/en-aria-clear.mp3) · [Sonia](narrated-tutorials/assets/auditions/en-sonia-british.mp3) · [Heart](narrated-tutorials/assets/auditions/en-heart-local.mp3) |
+| 英文男声 | [Guy](narrated-tutorials/assets/auditions/en-guy-steady.mp3) · [Ryan](narrated-tutorials/assets/auditions/en-ryan-friendly.mp3) · [Brian](narrated-tutorials/assets/auditions/en-brian-conversation.mp3) |
+
+下载后可以本地打开 `narrated-tutorials/assets/auditions/index.html`：先播放，再点击“选这个声音”，把页面显示的语句回复给 Codex；也可以下载声线配置附到对话中。网页不会自动发消息，也不会自动播放。
+
+只想先试听，用 Python 3.11+ 从仓库根目录运行，不必先安装制作依赖：
+
+```sh
+python3 narrated-tutorials/scripts/studio.py listen --language zh --output auditions
+python3 narrated-tutorials/scripts/studio.py listen --language en --gender female --output auditions
+```
+
+会导出 MP3、筛选试听页、可内嵌 Markdown 和音频路径。宿主支持音频播放器时，助手应直接显示音频；其他宿主可以用导出的试听页。
+
+[查看主动试听与选声流程](narrated-tutorials/references/voice-selection.md)。
+
 ## 制作过程
 
 ![制作流程图](docs/workflow.png)
@@ -72,7 +98,7 @@
 先让我试听声音，使用中英双语字幕，截图加编号，操作位置用移动指针指出。
 ```
 
-Skill 是工作说明和脚本，不会自动安装声音模型。首次使用还需准备下面的运行环境。
+Skill 是工作说明和脚本，不会自动安装声音模型。内置试听可先使用；首次制作新视频时，再准备下面的运行环境。
 
 ## 先跑通一个最小示例
 
@@ -113,12 +139,12 @@ python3 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-已有 23 项行为测试，覆盖字幕时间码、最终画面的字幕与指针、连续 20 段拼接，以及 VoiceStudio 本地接口的请求和失败处理。测试使用本机临时假服务和合成纯音，不需要真人录音或下载声音模型；需要 FFmpeg 和中文字体。
+已有 26 项行为测试，覆盖无需联网的内置试听、语言/性别筛选、样音损坏与过期检查、字幕时间码、最终画面的字幕与指针、连续 20 段拼接，以及 VoiceStudio 本地接口的请求和失败处理。测试使用本机临时假服务和合成纯音，不需要真人录音或下载声音模型；需要 FFmpeg 和中文字体。
 
 此版本在 macOS 验证，尚未验证所有系统和所有 AI 助手。真实声音克隆未完成模型层面的实测。
 
 ## 共享范围
 
-仓库只包含 Skill、脚本、通用示例、示范视频、流程图和测试。个人录音、历史业务截图、凭证、本机配置、模型权重和生成缓存不在共享范围内。
+仓库只包含 Skill、脚本、通用合成试听、通用示例、示范视频、流程图和测试。个人录音、历史业务截图、凭证、本机配置、模型权重和生成缓存不在共享范围内。
 
 代码未另行声明开源许可证；本次用于展示与交流。第三方服务、模型和依赖的许可不由本仓库替代。

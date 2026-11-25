@@ -35,3 +35,5 @@
 相关来源：[FFmpeg 叠加滤镜](https://ffmpeg.org/ffmpeg-filters.html#overlay)、[Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS)、[MLX-Audio](https://github.com/Neywa-Labs/mlx-audio)、[VoiceStudio](https://github.com/debpalash/VoiceStudio)。
 
 字幕由 captions.py 配合 Python wave/array 读取 PCM 数据测时，Pillow 排版原文与译文，FFmpeg 按同一时间轴叠加。Codex 在制作分镜时准备和校对双语译文；运行脚本不偷偷调用翻译服务。此版本不包含现有录音的自动转录/强制对齐模型。
+
+内置试听：Skill 附带 11 段通用 AI 合成 MP3。`listen` 用 Python 标准库校验并导出它们，让用户在配置引擎前先试听。不是模型权重、私人录音或实时生成的当前项目配音。
