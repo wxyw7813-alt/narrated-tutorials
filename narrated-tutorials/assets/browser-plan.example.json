@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "title": "真实网页操作、配音与双语字幕示范",
+  "url": "http://127.0.0.1:8765/browser-demo.html",
+  "language": "zh-CN",
+  "template": "software-guide",
+  "voice": {"preset":"zh-chengyue-steady"},
+  "subtitles": {"mode":"bilingual","burn_in":true,"target_language":"en"},
+  "viewport": {"width":1280,"height":720},
+  "capture_fps": 10,
+  "steps": [
+    {
+      "title":"打开设置",
+      "narration":"点击打开设置，进入配置页面。",
+      "captions":[{"text":"点击打开设置，进入配置页面。","translation":"Click Open settings to enter the configuration panel."}],
+      "actions":[
+        {"type":"click","target":{"role":"button","name":"打开设置"},"caption":1,"offset":0.1},
+        {"type":"expect_text","text":"项目设置"}
+      ]
+    },
+    {
+      "title":"选择版本并保存",
+      "narration":"选择 Python 三点一一，再保存设置。",
+      "captions":[{"speech":"选择 Python 三点一一，再保存设置。","text":"选择 Python 3.11，再保存设置。","translation":"Choose Python 3.11, then save the settings."}],
+      "actions":[
+        {"type":"select","target":{"label":"Python 版本"},"value":"3.11","caption":1,"offset":0.1},
+        {"type":"click","target":{"role":"button","name":"保存设置"},"caption":1,"offset":1.1},
+        {"type":"expect_text","text":"设置已保存：Python 3.11"}
+      ]
+    }
+  ]
+}

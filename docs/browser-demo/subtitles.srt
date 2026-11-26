@@ -1,0 +1,9 @@
+1
+00:00:00,025 --> 00:00:02,755
+点击打开设置，进入配置页面。
+Click Open settings to enter the configuration panel.
+
+2
+00:00:03,725 --> 00:00:06,440
+选择 Python 3.11，再保存设置。
+Choose Python 3.11, then save the settings.

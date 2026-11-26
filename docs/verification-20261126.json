@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-26",
+  "behavior_tests": 40,
+  "behavior_result": "passed, no skips on this Mac",
+  "skill_structure": "passed",
+  "real_browser_capture": {
+    "page": "bundled interactive local teaching fixture",
+    "actions": [
+      "open settings",
+      "select Python 3.11",
+      "save",
+      "assert visible confirmation"
+    ],
+    "continuous_actual_frames": true,
+    "desktop_installer_recording": false
+  },
+  "demo_seconds": 7.3,
+  "demo_video_sha256": "b5238573cb403208c98177c91c65d7964adda7f495f797f858dce1232ae69de6",
+  "automatic_status": "automatic_checks_passed",
+  "audio_onsets": [
+    {
+      "caption_start": 0.025,
+      "onset_error_seconds": 0.0
+    },
+    {
+      "caption_start": 3.725,
+      "onset_error_seconds": -0.004999999999999893
+    }
+  ],
+  "manual_status": "pending",
+  "ui_checks": {
+    "keyframe_video_seek": "passed with HTTP Range support",
+    "feedback_download": "passed; exported video hash matches; human items unchecked"
+  },
+  "remotion_runtime_integrated": false,
+  "real_voicestudio_model_tested": false
+}

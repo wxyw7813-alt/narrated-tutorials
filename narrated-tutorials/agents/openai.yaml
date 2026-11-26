@@ -1,4 +1,4 @@
 interface:
   display_name: "中英文配音教程视频"
-  short_description: "主动提供中英文短音频试听并选声，生成带双语字幕、截图标注与移动指针的教程视频"
+  short_description: "中英文选声与双语教程视频，支持分镜预览、真实网页采集、截图指引和可视化验收"
   default_prompt: "请用 $narrated-tutorials 把这些步骤做成教程视频，先在对话中给我播放候选声线的短音频，选好后再制作。"

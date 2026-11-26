@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "recording_status": "passed",
+  "method": "Playwright real browser continuous frames",
+  "requested_fps": 10,
+  "source_url": "http://127.0.0.1:8765/browser-demo.html",
+  "voice_records": [
+    {
+      "origin": "synthetic",
+      "timing": "measured-sentence-audio",
+      "voice_provenance": {
+        "provider": "caption-sentence-synthesis",
+        "units": [
+          {
+            "voice": {
+              "id": "zh-chengyue-steady",
+              "language": "zh-CN",
+              "label": "中文 · 承岳男声 · 大气磁性 / 本地设计",
+              "engine": "qwen-design",
+              "gender": "male",
+              "instruct": "一位三十二岁左右的中国青年男性，地道标准普通话，成熟但年轻的男讲师声音。中低音区，音色浑厚温暖，有自然的磁性和结实的胸腔共鸣，声音饱满通透，舒展大方，沉稳自信。用平实从容的课程讲解语气说话，语调平稳，音高起伏小，句尾自然收稳，气息稳定，语速适中略舒缓，发音准确，吐字清楚，停顿自然。保持自然声带发声，不刻意压低嗓子，不做戏剧化表演，不使用电影解说的夸张重音。",
+              "seed": 1505,
+              "temperature": 0.5,
+              "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+              "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
+              "audition_status": "retained-by-skill-owner-2026-11-25",
+              "preset": "zh-chengyue-steady"
+            },
+            "revision": 1,
+            "model_sha256": "6a23a4559ee6691787ab223f01d5594691348a68f9f72a762cc015cb19006ec3"
+          }
+        ]
+      },
+      "audio_sha256": "3414c306b5d8c1bcd9e5dc24b4bf51f4c2fe0e82c5fe469f79ca06cea5658afa",
+      "capture_clip_sha256": "d294274a494bda63bb3d45e2e9bbc14335a3ba57df98bf2a4db1ed002d69c056",
+      "screenshot_sha256": "ee98b8c928c2f56553049c6950474a7d7c592101a5920a8a9165a1c4941f3ae4",
+      "recorded_seconds": 3.7
+    },
+    {
+      "origin": "synthetic",
+      "timing": "measured-sentence-audio",
+      "voice_provenance": {
+        "provider": "caption-sentence-synthesis",
+        "units": [
+          {
+            "voice": {
+              "id": "zh-chengyue-steady",
+              "language": "zh-CN",
+              "label": "中文 · 承岳男声 · 大气磁性 / 本地设计",
+              "engine": "qwen-design",
+              "gender": "male",
+              "instruct": "一位三十二岁左右的中国青年男性，地道标准普通话，成熟但年轻的男讲师声音。中低音区，音色浑厚温暖，有自然的磁性和结实的胸腔共鸣，声音饱满通透，舒展大方，沉稳自信。用平实从容的课程讲解语气说话，语调平稳，音高起伏小，句尾自然收稳，气息稳定，语速适中略舒缓，发音准确，吐字清楚，停顿自然。保持自然声带发声，不刻意压低嗓子，不做戏剧化表演，不使用电影解说的夸张重音。",
+              "seed": 1505,
+              "temperature": 0.5,
+              "model_repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+              "model_revision": "5c390979e4b93af5f2932f90742ca99c7dd04687",
+              "audition_status": "retained-by-skill-owner-2026-11-25",
+              "preset": "zh-chengyue-steady"
+            },
+            "revision": 1,
+            "model_sha256": "6a23a4559ee6691787ab223f01d5594691348a68f9f72a762cc015cb19006ec3"
+          }
+        ]
+      },
+      "audio_sha256": "f51cc63df36bedcf773eac9787fae4d3cd42e848abee8ea635a5d0058aa0069d",
+      "capture_clip_sha256": "89f2a020fec490fbf41c5af37ee90948b0ebdd16cb97e3a80c2abd3e18a0747d",
+      "screenshot_sha256": "eaa21432a0a2d78adeb928d34d0f4d9229875d72c72756749629980188ae1865",
+      "recorded_seconds": 3.6
+    }
+  ],
+  "source_note": "Playwright 在独立浏览器中实际操作并连续采集网页画面；指针与点击光圈为教学覆盖层。不是桌面软件录屏。"
+}

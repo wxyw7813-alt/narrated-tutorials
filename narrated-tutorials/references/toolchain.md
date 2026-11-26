@@ -6,6 +6,9 @@
 |---|---|---|
 | Codex + SKILL.md | 把需求整理成步骤、分镜和可重复的制作流程 | 已使用；不是独立视频编辑软件 |
 | Python 3.11+ / JSON | 调用工具、保存分镜和风格参数 | 核心运行部分；不写死作者电脑路径 |
+| Node 20+ / Playwright / Chromium | 可选的真实网页操作与连续画面采集 | 已实测打开设置、选择版本、保存和结果断言；独立浏览器，不是桌面录屏 |
+| reviewing.py / HTML | 展示实际成片关键帧、自动检查与人工反馈 | 每次 preview/render 自动生成；不是自动听感或事实判断 |
+| components.py / templates.json | 复用标题、步骤、流程框与主题 | 3 个可覆盖模板；未集成 Remotion 运行时 |
 | Pillow | 排版卡片与截图，画编号、高亮框、指针和点击光圈素材 | 已实现并实测 |
 | FFmpeg | 合成画面、动画指针、配音、音量、单语/双语画面字幕和可选字幕轨，导出 MP4 | 已实现并实测；overlay 叠加指针，split 复用点击光圈 |
 | ffprobe + FFmpeg 解码 | 检查时长、分辨率、音轨、字幕及文件能否完整播放 | 已使用；不代替人工听感检查 |
@@ -37,3 +40,5 @@
 字幕由 captions.py 配合 Python wave/array 读取 PCM 数据测时，Pillow 排版原文与译文，FFmpeg 按同一时间轴叠加。Codex 在制作分镜时准备和校对双语译文；运行脚本不偷偷调用翻译服务。此版本不包含现有录音的自动转录/强制对齐模型。
 
 内置试听：Skill 附带 10 段通用 AI 合成 MP3。`listen` 用 Python 标准库校验并导出它们，让用户在配置引擎前先试听。不是模型权重、私人录音或实时生成的当前项目配音。
+
+新增模块用法：[分镜与模板](preview-and-templates.md)、[网页采集](browser-capture.md)、[验收](quality-review.md)。借鉴范围及原始链接见 [design-influences.md](design-influences.md)。

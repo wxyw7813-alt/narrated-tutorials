@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "template": "software-guide",
+  "render_mode": "full",
+  "style": {
+    "fps": 20,
+    "tail_seconds": 0.75,
+    "background": "#f4f7fc",
+    "accent": "#315de8",
+    "text": "#17243a",
+    "highlight": "#ffbf36",
+    "pointer_enabled": true,
+    "pointer_scale": 1.0,
+    "click_seconds": 0.5,
+    "picture_height": 600,
+    "caption_space": true
+  },
+  "subtitles": {
+    "mode": "bilingual",
+    "burn_in": true,
+    "gap_seconds": 0.12,
+    "source_language": "zh-CN",
+    "target_language": "en",
+    "max_font_size": 40
+  },
+  "audio_pipeline": "PCM scene intermediates; timestamp gaps reconciled at cuts; AAC encoded once after joining",
+  "synthetic_narration": true,
+  "seconds": 7.3,
+  "planned_seconds": 7.300000000000001,
+  "subtitle_note": "Caption units are timed from actual sentence PCM or explicitly provided aligned cues; bilingual lines share exact timestamps. No character-rate duration estimates.",
+  "source_note": "Playwright 在独立浏览器中实际操作并连续采集网页画面；指针与点击光圈为教学覆盖层。不是桌面软件录屏。",
+  "scenes": [
+    {
+      "title": "打开设置",
+      "narration": "点击打开设置，进入配置页面。",
+      "source_scene": 1,
+      "start": 0.0,
+      "duration": 3.7,
+      "audio_duration": 2.8,
+      "subtitle_timing": "measured-sentence-audio",
+      "narration_origin": "synthetic",
+      "voice_provenance": {
+        "provider": "provided-audio",
+        "sha256": "3414c306b5d8c1bcd9e5dc24b4bf51f4c2fe0e82c5fe469f79ca06cea5658afa"
+      },
+      "clip": "000.mov",
+      "protected_regions": [
+        {
+          "label": "打开设置",
+          "x": 145.5,
+          "y": 567.234375,
+          "width": 195.0,
+          "height": 85.78125
+        }
+      ],
+      "marker_regions": [],
+      "capture_warnings": [],
+      "pointer_overlay": false,
+      "pointer_keyframes": [],
+      "container_duration": 3.7,
+      "pointer_note": null
+    },
+    {
+      "title": "选择版本并保存",
+      "narration": "选择 Python 三点一一，再保存设置。",
+      "source_scene": 2,
+      "start": 3.7,
+      "duration": 3.6,
+      "audio_duration": 2.8,
+      "subtitle_timing": "measured-sentence-audio",
+      "narration_origin": "synthetic",
+      "voice_provenance": {
+        "provider": "provided-audio",
+        "sha256": "f51cc63df36bedcf773eac9787fae4d3cd42e848abee8ea635a5d0058aa0069d"
+      },
+      "clip": "001.mov",
+      "protected_regions": [
+        {
+          "label": "Python 版本",
+          "x": 1218.65625,
+          "y": 475.453125,
+          "width": 153.0,
+          "height": 75.0
+        },
+        {
+          "label": "保存设置",
+          "x": 1020.0,
+          "y": 669.234375,
+          "width": 195.0,
+          "height": 85.78125
+        }
+      ],
+      "marker_regions": [],
+      "capture_warnings": [],
+      "pointer_overlay": false,
+      "pointer_keyframes": [],
+      "container_duration": 3.6,
+      "pointer_note": null
+    }
+  ],
+  "video_sha256": "b5238573cb403208c98177c91c65d7964adda7f495f797f858dce1232ae69de6"
+}

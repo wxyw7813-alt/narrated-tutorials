@@ -83,7 +83,7 @@ async def generate(scene,settings,voice,base,work,allow_online,synthesize,comman
         origin=len(combined)
         combined.extend(samples[left:right])
         start=(origin+a-left)/48000;end=(origin+b-left)/48000
-        timed.append({'text':item['text'],'translation':item.get('translation'),'start':start,'end':end})
+        timed.append({'speech':item['speech'],'text':item['text'],'translation':item.get('translation'),'start':start,'end':end})
         provenance.append(record)
         if i<len(entries)-1:combined.extend([0]*round(float(settings['gap_seconds'])*48000))
     key=hashlib.sha256(json.dumps({'scene':scene['narration'],'settings':settings,'units':entries,'provenance':provenance},sort_keys=True).encode()).hexdigest()

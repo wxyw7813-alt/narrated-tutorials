@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "templates": [
+    {
+      "id": "software-guide",
+      "label": "软件操作教程",
+      "description": "蓝色重点、浅色背景，优先保留截图和按钮的可读性。",
+      "style": {"background":"#f4f7fc","accent":"#315de8","text":"#17243a","highlight":"#ffbf36"}
+    },
+    {
+      "id": "concept-explainer",
+      "label": "原理与流程讲解",
+      "description": "暖白背景、青绿色重点，适合流程图和步骤卡片。",
+      "style": {"background":"#faf8f2","accent":"#16786f","text":"#173a37","highlight":"#e89b24"}
+    },
+    {
+      "id": "minimal",
+      "label": "简洁交付",
+      "description": "白色背景、深灰标题，适合课堂展示和正式交付。",
+      "style": {"background":"#ffffff","accent":"#334155","text":"#17243a","highlight":"#e7812e"}
+    }
+  ]
+}

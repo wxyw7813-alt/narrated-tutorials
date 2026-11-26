@@ -1,12 +1,34 @@
 # 中英文配音教程视频 Skill
 
-**把步骤、截图和已有录屏，做成带配音、字幕、重点标记和移动指针的教程视频。**
+**把步骤、截图、已有录屏或真实网页操作，做成带配音、双语字幕、操作指引和验收记录的教程视频。**
 
 这是给 Codex 使用的可复用 Skill。你负责提供内容、选择声音；AI 助手安排分镜并运行脚本，输出 MP4、字幕和制作记录。主要在 macOS 上验证。
 
 > 如果你是第一次了解这个项目：先看下面的示范，再看流程图。安装说明在后面。
 
-## 先看一个示范
+## 新增：先预览、真实采集、逐镜验收
+
+本次把 Remotion 的预览与组件复用思路、Anything2Explainer 的成片验收思路，以及 Playwright 的真实素材采集落到了脚本中。**渲染器仍是 Pillow + FFmpeg，未集成 Remotion/React。**
+
+![新版制作流程](docs/quality-workflow.png)
+
+[可编辑 Excalidraw 源图](docs/quality-workflow.excalidraw) · [本次借鉴与实现说明](narrated-tutorials/references/design-influences.md)
+
+- **先看效果：**storyboard 不生成新配音；preview 只制作选定分镜，减少整片返工。提供软件操作、原理流程、简洁交付 3 个模板。
+- **采集真实网页：**Playwright 实际点击、选择并等待结果，连续采集画面；动作可绑定实际配音时间。桌面软件仍需其他录屏工具。
+- **交付有依据：**每次成片自动生成 review.html、review.json 和关键帧总览，核对媒体、字幕时间与已标记区域遮挡；听感、术语及操作含义保留人工检查。
+
+[播放新版示范：承岳配音＋真实网页操作＋双语字幕](docs/browser-demo/video.mp4)
+
+[![新版示范实际成片](docs/browser-demo/preview.png)](docs/browser-demo/video.mp4)
+
+页面是可交互的本地教学演示，实际完成“打开设置→选择 3.11→保存”；指针与点击光圈为教学覆盖层，旁白为 AI 合成。**这不是 Cursor/PyCharm 安装录屏。**
+
+[下载后打开验收页](docs/browser-demo/review.html) · [自动检查记录](docs/browser-demo/review.json) · [实际目标截图](docs/browser-demo/step-002.png) · [可编辑采集计划](narrated-tutorials/assets/browser-plan.example.json)
+
+GitHub 不直接运行 HTML；下载仓库后本地打开验收页。详细用法：[模板与预览](narrated-tutorials/references/preview-and-templates.md)、[Playwright 素材采集](narrated-tutorials/references/browser-capture.md)、[验收标准与限制](narrated-tutorials/references/quality-review.md)。
+
+## 原有截图与指针示范
 
 [播放：中文配音 + 中英双语字幕 + 移动指针](docs/demo/video.mp4)
 
@@ -75,6 +97,8 @@ python3 narrated-tutorials/scripts/studio.py listen --language en --gender femal
 |---|---|
 | Codex / SKILL.md | 读懂要求，安排分镜和制作步骤 |
 | Python / JSON | 保存项目设置并调用制作工具 |
+| Playwright / Chromium（可选） | 实际操作网页、连续采集画面、保存截图与动作记录 |
+| reviewing.py / HTML | 生成实际成片关键帧与验收反馈页 |
 | Pillow | 排版截图，画编号、标记和指针素材 |
 | FFmpeg / ffprobe | 合成视频、音频、字幕和指针，检查输出 |
 | edge-tts | 调用 Microsoft 在线预设配音；会发送旁白文本 |
@@ -119,7 +143,7 @@ python3 -m venv .venv
 .venv/bin/python narrated-tutorials/scripts/studio.py render examples/bilingual.json --output result --allow-online
 ```
 
-打开 `result/preview.html` 查看成片。重复生成到相同目录时，确认需要替换再加 `--overwrite`。不使用在线服务时，可另行配置 [Qwen 中文声音设计](narrated-tutorials/references/qwen-design.md)、[离线 Heart 英文声音](narrated-tutorials/references/usage.md) 或导入已有音频。
+打开 `result/preview.html` 查看成片，`result/review.html` 复查实际关键帧与检查结果。重复生成到相同目录时，确认需要替换再加 `--overwrite`。不使用在线服务时，可另行配置 [Qwen 中文声音设计](narrated-tutorials/references/qwen-design.md)、[离线 Heart 英文声音](narrated-tutorials/references/usage.md) 或导入已有音频。
 
 ## 可以怎样调整
 
@@ -139,7 +163,7 @@ python3 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-已有 26 项行为测试，覆盖无需联网的内置试听、语言/性别筛选、样音损坏与过期检查、字幕时间码、最终画面的字幕与指针、连续 20 段拼接，以及 VoiceStudio 本地接口的请求和失败处理。测试使用本机临时假服务和合成纯音，不需要真人录音或下载声音模型；需要 FFmpeg 和中文字体。
+已有 40 项行为测试，覆盖无需联网的内置试听、语言/性别筛选、样音损坏与过期检查、字幕时间码、最终画面的字幕与指针、连续 20 段拼接，以及 VoiceStudio 本地接口的请求和失败处理。测试使用本机临时服务和合成纯音，不需要真人录音或下载声音模型；需要 FFmpeg 和中文字体。新增预览、模板、流程组件、验收告警与真实 Chromium 操作测试；可选 Playwright/浏览器缺失时，真实采集集成项会明确跳过。完整覆盖需先按网页采集说明准备可选依赖。
 
 此版本在 macOS 验证，尚未验证所有系统和所有 AI 助手。真实声音克隆未完成模型层面的实测。
 

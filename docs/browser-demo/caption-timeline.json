@@ -1,0 +1,16 @@
+[
+  {
+    "text": "点击打开设置，进入配置页面。",
+    "translation": "Click Open settings to enter the configuration panel.",
+    "start": 0.025,
+    "end": 2.755,
+    "speech": "点击打开设置，进入配置页面。"
+  },
+  {
+    "text": "选择 Python 3.11，再保存设置。",
+    "translation": "Choose Python 3.11, then save the settings.",
+    "start": 3.725,
+    "end": 6.44,
+    "speech": "选择 Python 三点一一，再保存设置。"
+  }
+]

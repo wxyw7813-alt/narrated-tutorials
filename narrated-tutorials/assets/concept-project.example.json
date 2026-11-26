@@ -1,0 +1,16 @@
+{
+  "schema_version":1,
+  "title":"从图解到操作的视频制作流程",
+  "language":"zh-CN",
+  "template":"concept-explainer",
+  "voice":{"preset":"zh-chengyue-steady"},
+  "subtitles":{"mode":"bilingual","burn_in":true,"target_language":"en"},
+  "source_note":"代码绘制流程图，不是软件界面截图。AI 合成旁白。",
+  "scenes":[{
+    "title":"先看目标，再做操作，最后检查",
+    "kind":"流程图 · 原理讲解模板",
+    "flow":["看清目标","按步骤操作","检查结果"],
+    "narration":"先看清目标，再按步骤操作，最后检查结果。",
+    "captions":[{"text":"先看清目标，再按步骤操作，最后检查结果。","translation":"Understand the goal, follow the steps, then check the result."}]
+  }]
+}

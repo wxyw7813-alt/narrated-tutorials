@@ -19,3 +19,8 @@ results/
 /auditions/
 work/
 *.log
+
+# Optional browser runtime and local capture outputs
+node_modules/
+/captures/
+/storyboards/

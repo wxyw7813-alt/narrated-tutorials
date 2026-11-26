@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "video_sha256": "b5238573cb403208c98177c91c65d7964adda7f495f797f858dce1232ae69de6",
+  "render_mode": "full",
+  "automatic_status": "automatic_checks_passed",
+  "automatic_checks": [
+    {
+      "code": "video_hash",
+      "status": "pass",
+      "detail": "视频与制作记录的散列一致。"
+    },
+    {
+      "code": "dimensions",
+      "status": "pass",
+      "detail": "输出画面应为 1920×1080。"
+    },
+    {
+      "code": "audio_track",
+      "status": "pass",
+      "detail": "存在旁白音轨。"
+    },
+    {
+      "code": "duration",
+      "status": "pass",
+      "detail": "成片时长与制作时间轴一致。"
+    },
+    {
+      "code": "decode",
+      "status": "pass",
+      "detail": "成片已完整解码。"
+    },
+    {
+      "code": "caption_range",
+      "status": "pass",
+      "detail": "字幕必须非空、顺序正确，并在成片时间范围内。"
+    },
+    {
+      "code": "caption_files",
+      "status": "pass",
+      "detail": "按当前模式检查字幕导出文件。"
+    },
+    {
+      "code": "translations",
+      "status": "pass",
+      "detail": "每句双语字幕有配对译文。"
+    },
+    {
+      "code": "caption_coverage",
+      "status": "pass",
+      "detail": "每个分镜至少有一句字幕。"
+    },
+    {
+      "code": "scene_cuts",
+      "status": "pass",
+      "detail": "逐段容器时长与时间轴一致。"
+    },
+    {
+      "code": "audio_onset_1",
+      "status": "pass",
+      "detail": "实际音轨与第 1 个已测时语句的起点差：+0 ms。"
+    },
+    {
+      "code": "audio_onset_2",
+      "status": "pass",
+      "detail": "实际音轨与第 2 个已测时语句的起点差：-5 ms。"
+    },
+    {
+      "code": "pointer_1",
+      "status": "pass",
+      "detail": "第 1 步指针坐标与时间范围。"
+    },
+    {
+      "code": "protected_caption_1_打开设置",
+      "status": "pass",
+      "detail": "第 1 步重要区域「打开设置」是否与画面字幕区重叠。"
+    },
+    {
+      "code": "pointer_2",
+      "status": "pass",
+      "detail": "第 2 步指针坐标与时间范围。"
+    },
+    {
+      "code": "protected_caption_2_Python 版本",
+      "status": "pass",
+      "detail": "第 2 步重要区域「Python 版本」是否与画面字幕区重叠。"
+    },
+    {
+      "code": "protected_caption_2_保存设置",
+      "status": "pass",
+      "detail": "第 2 步重要区域「保存设置」是否与画面字幕区重叠。"
+    }
+  ],
+  "audio_onsets": [
+    {
+      "caption_start": 0.025,
+      "onset_error_seconds": 0.0
+    },
+    {
+      "caption_start": 3.725,
+      "onset_error_seconds": -0.004999999999999893
+    }
+  ],
+  "manual_status": "pending",
+  "manual_checks": [
+    {
+      "id": "terms",
+      "label": "旁白没有漏字，软件名、命令和术语读音正确。"
+    },
+    {
+      "id": "readability",
+      "label": "字幕、截图与按钮文字清晰，没有重要内容被遮挡。"
+    },
+    {
+      "id": "pointer_meaning",
+      "label": "指针指向旁白提到的真实操作位置。"
+    },
+    {
+      "id": "actions",
+      "label": "真实录制的步骤和结果正确；示意画面已明确标注。"
+    },
+    {
+      "id": "listening",
+      "label": "声音自然、语调和节奏符合这次需求。"
+    }
+  ],
+  "scene_count": 2,
+  "limitations": [
+    "时间范围、媒体与几何检查不等于语音识别或语义理解。",
+    "没有标记 protected_regions 时，按钮遮挡仍需人工检查。",
+    "未完成的人声音色、术语读音和指针语义检查不能自动判为通过。"
+  ]
+}

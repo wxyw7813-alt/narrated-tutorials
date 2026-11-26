@@ -105,18 +105,12 @@ def wrap(text, font, width):
 
 def make_card(scene, path, base, fontfile, style=None):
     from PIL import Image, ImageDraw, ImageFont, ImageOps
+    import components
     style=visuals.settings(style)
     im = Image.new('RGB', (1920, 1080), style['background'])
     d = ImageDraw.Draw(im)
     f = lambda n: ImageFont.truetype(fontfile, n)
-    d.rectangle((0, 0, 1920, 14), fill=style['accent'])
-    d.text((80, 42), scene.get('kind', '步骤讲解 / Step guide'), font=f(25), fill='#53657b')
-    title = wrap(scene['title'], f(52), 1750)
-    if len(title) > 2:
-        raise ValueError('Scene title too long: ' + scene['title'])
-    for i, line in enumerate(title):
-        d.text((80, 90 + i * 65), line, font=f(52), fill=style['text'])
-    top = 248
+    components.header(d,scene,style,f,wrap)
     if scene.get('image'):
         src = Image.open(relative(base, scene['image'])).convert('RGB')
         orig_w, orig_h = src.size
@@ -138,20 +132,9 @@ def make_card(scene, path, base, fontfile, style=None):
             r = 27
             d.ellipse((px-r, py-r, px+r, py+r), fill='#e5493b', outline='white', width=3)
             d.text((px, py), str(c['number']), anchor='mm', font=f(28), fill='white')
-    else:
-        y = top + 20
-        for i, point in enumerate(scene.get('points', []), 1):
-            lines = wrap(point, f(39), 1550)
-            if y + 58 * len(lines) > (825 if style.get('caption_space') else 934):
-                raise ValueError('Too much scene text; split into more scenes')
-            d.rounded_rectangle((80, y, 140, y + 58), radius=13, fill='#e2eafe')
-            d.text((110, y + 29), str(i), anchor='mm', font=f(31), fill='#244fca')
-            for j, line in enumerate(lines):
-                d.text((175, y + j * 58), line, font=f(39), fill=style['text'])
-            y += len(lines) * 58 + 30
-    footer = scene.get('footer', 'AI 合成旁白 · Synthetic narration')
-    for i, line in enumerate(wrap(footer, f(24), 1750)[:2]):
-        d.text((80, (850 if style.get('caption_space') else 975)+i*32), line, font=f(24), fill='#53657b')
+    elif scene.get('flow'):components.flow(d,scene['flow'],style,f,wrap)
+    else:components.steps(d,scene.get('points',[]),style,f,wrap)
+    components.footer(d,scene,style,f,wrap)
     im.save(path)
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -309,6 +292,8 @@ def load_manifest(path):
             raise ValueError('Every scene needs title and narration.')
         if s.get('video') and (s.get('image') or s.get('callouts')):
             raise ValueError('Video scenes do not support screenshot callouts; annotate source footage first.')
+        if s.get('flow') and (s.get('image') or s.get('video') or s.get('points')):
+            raise ValueError('flow is its own card layout; do not mix with image/video/points')
         for key in ('image', 'video', 'audio'):
             if s.get(key) and not relative(path.parent, s[key]).is_file():
                 raise ValueError('Missing scene asset: ' + key)
@@ -318,6 +303,14 @@ def load_manifest(path):
 
 async def render(a):
     data, base = load_manifest(a.manifest)
+    source_indices=list(range(1,len(data['scenes'])+1))
+    is_preview=getattr(a,'action',None)=='preview' or bool(getattr(a,'preview_scenes',None))
+    if is_preview:
+        selected=getattr(a,'preview_scenes',None) or [1]
+        if len(set(selected))!=len(selected) or any(not isinstance(n,int) or not 1<=n<=len(source_indices) for n in selected):
+            raise ValueError('Preview scene numbers must be unique and inside the project')
+        source_indices=selected
+        data={**data,'scenes':[data['scenes'][n-1] for n in selected]}
     voice = resolve_voice(data.get('voice',{}))
     out = Path(a.output).resolve()
     if (out/'video.mp4').exists() and not a.overwrite:
@@ -325,7 +318,7 @@ async def render(a):
     out.mkdir(parents=True, exist_ok=True)
     work = out/'work'; work.mkdir(exist_ok=True)
     font = font_path(a.font)
-    style=visuals.settings(data.get('style'))
+    style=visuals.settings(data.get('style'),data.get('template'))
     subtitle_settings=captions.config(data.get('subtitles'),data.get('language','zh-CN'))
     if subtitle_settings['mode']!='off' and subtitle_settings['burn_in']:
         style.update(picture_height=600,caption_space=True)
@@ -339,7 +332,9 @@ async def render(a):
         if scene.get('audio'):
             audio = relative(base, scene['audio']); length = duration(audio)
             cues=captions.supplied(scene,timing_settings,length) if needs_timing else []
-            timing, provenance = 'provided-audio-aligned-captions', {'provider':'provided-audio','sha256':digest(audio)}
+            timing=scene.get('caption_timing_origin','provided-audio-aligned-captions')
+            if timing not in ('provided-audio-aligned-captions','measured-sentence-audio'):raise ValueError('Unknown caption_timing_origin')
+            provenance={'provider':'provided-audio','sha256':digest(audio)}
             origin = scene.get('audio_origin', 'provided-unknown')
         else:
             if not needs_timing:
@@ -348,7 +343,9 @@ async def render(a):
                 audio,cues,timing,provenance=await captions.generate(scene,timing_settings,voice,base,work,a.allow_online,synthesize,command,tool('ffmpeg'))
             length = duration(audio)
             origin = 'synthetic'
-        seconds = math.ceil((length + style['tail_seconds'])*fps)/fps
+        minimum=float(scene.get('min_seconds',0))
+        if not math.isfinite(minimum) or minimum<0:raise ValueError('min_seconds must be finite and nonnegative')
+        seconds = math.ceil(max(length + style['tail_seconds'],minimum)*fps)/fps
         # PCM intermediate audio has no AAC encoder padding per scene.
         # Encode AAC once after concatenation, so timestamps do not drift at cuts.
         clip = work/f'{i:03}.mov'
@@ -391,8 +388,11 @@ async def render(a):
         if abs(segment_duration-seconds)>.001:
             raise RuntimeError('Scene container duration differs from timeline; refusing subtitle drift.')
         subs.extend({**cue,'start':clock+cue['start'],'end':clock+cue['end']} for cue in cues)
-        scenes.append({'title':scene['title'],'start':clock,'duration':seconds,'audio_duration':length,
+        protected,markers=visuals.review_regions(scene,base,style)
+        scenes.append({'title':scene['title'],'narration':scene['narration'],'source_scene':source_indices[i],
+                       'start':clock,'duration':seconds,'audio_duration':length,
                        'subtitle_timing':timing,'narration_origin':origin,'voice_provenance':provenance,'clip':clip.name,
+                       'protected_regions':protected,'marker_regions':markers,'capture_warnings':scene.get('capture_warnings',[]),
                        'pointer_overlay':bool(plan),'pointer_keyframes':plan,'container_duration':segment_duration,'pointer_note':'Teaching overlay; not real mouse interaction' if plan else None})
         clock += seconds
     if subtitle_settings['mode']!='off':
@@ -422,15 +422,18 @@ async def render(a):
     if abs(actual-clock) > .4 or not expected <= {s['codec_type'] for s in info['streams']}:
         raise RuntimeError('Final duration/track validation failed')
     if subtitle_settings['mode']=='off':captions.clear_exports(out)
-    record = {'schema_version':1,'style':style,'subtitles':subtitle_settings,'audio_pipeline':'PCM scene intermediates; timestamp gaps reconciled at cuts; AAC encoded once after joining','synthetic_narration':any(s['narration_origin']=='synthetic' for s in scenes),'seconds':actual,'planned_seconds':clock,
+    record = {'schema_version':1,'template':data.get('template','software-guide'),'render_mode':'scene-preview' if is_preview else 'full',
+              'style':style,'subtitles':subtitle_settings,'audio_pipeline':'PCM scene intermediates; timestamp gaps reconciled at cuts; AAC encoded once after joining','synthetic_narration':any(s['narration_origin']=='synthetic' for s in scenes),'seconds':actual,'planned_seconds':clock,
               'subtitle_note':'Caption units are timed from actual sentence PCM or explicitly provided aligned cues; bilingual lines share exact timestamps. No character-rate duration estimates.',
               'source_note':data.get('source_note','Scenes assembled from supplied materials; no live recording is implied.'),
               'scenes':scenes,'video_sha256':digest(out/'video.mp4')}
     dump(out/'provenance.json',record)
     (out/'chapters.txt').write_text('\n'.join(f'{int(s["start"])//60:02}:{int(s["start"])%60:02} {s["title"]}' for s in scenes),encoding='utf-8')
     subtitle_note='字幕已直接显示在画面上，另附 SRT / VTT 字幕文件。' if kinds and subtitle_settings['burn_in'] else '字幕可在支持字幕的播放器中选择；另附 SRT / VTT。' if kinds else '本视频未添加字幕。'
-    (out/'preview.html').write_text('<!doctype html><meta charset="utf-8"><title>视频预览</title><style>body{font:17px/1.8 system-ui;max-width:1000px;margin:36px auto}video{width:100%}</style><h1>'+html.escape(data.get('title','教程视频'))+'</h1><p>'+html.escape(disclosure)+'</p><video controls src="video.mp4"></video><p>'+html.escape(record['source_note'])+'</p><p>'+subtitle_note+'</p>',encoding='utf-8')
-    print(json.dumps({'video':str(out/'video.mp4'),'seconds':actual},ensure_ascii=False))
+    (out/'preview.html').write_text('<!doctype html><meta charset="utf-8"><title>视频预览</title><style>body{font:17px/1.8 system-ui;max-width:1000px;margin:36px auto}video{width:100%}</style><h1>'+html.escape(data.get('title','教程视频'))+'</h1><p>'+html.escape(disclosure)+'</p><video controls src="video.mp4"></video><p>'+html.escape(record['source_note'])+'</p><p>'+subtitle_note+'</p><p><a href="review.html">打开关键帧验收页</a></p>',encoding='utf-8')
+    import reviewing
+    review=reviewing.build(out,probe,command,tool('ffmpeg'),digest,font)
+    print(json.dumps({'video':str(out/'video.mp4'),'seconds':actual,**review},ensure_ascii=False))
 
 def listening_pack(a):
     """Export recorded synthetic previews without TTS, model setup or network."""
@@ -494,18 +497,29 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     sub = p.add_subparsers(dest='action',required=True)
     sub.add_parser('voices')
+    sub.add_parser('templates')
     q=sub.add_parser('listen',help='Export bundled audio previews without network or voice models');q.add_argument('--output',required=True);q.add_argument('--language',choices=['zh','en','all'],default='all');q.add_argument('--gender',choices=['female','male'])
-    q=sub.add_parser('doctor'); q.add_argument('--font')
+    q=sub.add_parser('doctor'); q.add_argument('--font');q.add_argument('--capture',action='store_true')
     q=sub.add_parser('vs-check');q.add_argument('--url',default='http://127.0.0.1:3900')
     q=sub.add_parser('audition');q.add_argument('--output',required=True);q.add_argument('--language',choices=['zh','en','all'],default='all');q.add_argument('--preset');q.add_argument('--text');q.add_argument('--allow-online',action='store_true')
     q=sub.add_parser('render');q.add_argument('manifest');q.add_argument('--output',required=True);q.add_argument('--font');q.add_argument('--allow-online',action='store_true');q.add_argument('--overwrite',action='store_true')
+    q=sub.add_parser('preview',help='Render only chosen complete scenes');q.add_argument('manifest');q.add_argument('--scene',dest='preview_scenes',type=int,action='append');q.add_argument('--output',required=True);q.add_argument('--font');q.add_argument('--allow-online',action='store_true');q.add_argument('--overwrite',action='store_true')
+    q=sub.add_parser('storyboard',help='Static layout preview without new narration');q.add_argument('manifest');q.add_argument('--output',required=True);q.add_argument('--font')
+    q=sub.add_parser('review');q.add_argument('output');q.add_argument('--font')
+    q=sub.add_parser('capture',help='Record a real browser workflow with optional prepared narration');q.add_argument('manifest');q.add_argument('--output',required=True);q.add_argument('--allow-online',action='store_true');q.add_argument('--allow-external',action='store_true');q.add_argument('--overwrite',action='store_true');q.add_argument('--headed',action='store_true')
     a = p.parse_args()
     try:
         if a.action=='voices':
             print(json.dumps(PRESETS,ensure_ascii=False,indent=2))
+        elif a.action=='templates':
+            print(json.dumps(visuals.templates(),ensure_ascii=False,indent=2))
         elif a.action=='listen':
             listening_pack(a)
         elif a.action=='doctor':
+            if a.capture:
+                node=shutil.which('node')
+                if not node:raise ValueError('Node.js is missing; optional browser capture needs Node 20+.')
+                print(command([node,ROOT/'scripts/capture.mjs','--doctor']));return 0
             import PIL
             import edge_tts
             print(json.dumps({'python':sys.version.split()[0],'ffmpeg':tool('ffmpeg'),'ffprobe':tool('ffprobe'),'font':font_path(a.font),'pillow':PIL.__version__,'edge_tts':edge_tts.__version__},ensure_ascii=False,indent=2))
@@ -513,8 +527,18 @@ def main():
             raw,headers=local_request(a.url,'/engines');print(raw.decode())
         elif a.action=='audition':
             asyncio.run(audition(a))
-        elif a.action=='render':
+        elif a.action in ('render','preview'):
             asyncio.run(render(a))
+        elif a.action=='storyboard':
+            import reviewing
+            data,base=load_manifest(a.manifest)
+            print(json.dumps(reviewing.storyboard(data,base,a.output,font_path(a.font),make_card,command,tool('ffmpeg')),ensure_ascii=False))
+        elif a.action=='review':
+            import reviewing
+            print(json.dumps(reviewing.build(a.output,probe,command,tool('ffmpeg'),digest,font_path(a.font)),ensure_ascii=False))
+        elif a.action=='capture':
+            import capturing
+            asyncio.run(capturing.capture(a,resolve_voice,synthesize,command,tool,probe,digest))
     except (ValueError,KeyError,RuntimeError,OSError) as exc:
         print(f'ERROR: {exc}',file=sys.stderr);return 1
     return 0

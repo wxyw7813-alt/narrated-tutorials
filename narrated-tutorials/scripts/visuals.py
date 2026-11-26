@@ -8,8 +8,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-def settings(overrides=None):
+def templates():
+    return json.loads((ROOT/'assets/templates.json').read_text())['templates']
+
+def settings(overrides=None,template=None):
     result = json.loads((ROOT/'assets/style-default.json').read_text())
+    if template:
+        chosen=next((t for t in templates() if t['id']==template),None)
+        if chosen is None:raise ValueError('Unknown template: '+str(template))
+        result.update(chosen['style'])
     result.update(overrides or {})
     if not isinstance(result['fps'], int) or not 10 <= result['fps'] <= 30:
         raise ValueError('style.fps must be an integer from 10 to 30')
@@ -32,6 +39,31 @@ def image_point(x,y,size,height=670):
         raise ValueError('Visual target is outside source image')
     left,top,w,h=image_placement(size,height)
     return left+x*w/size[0],top+y*h/size[1]
+
+def review_regions(scene,base,style):
+    """Map explicitly important UI regions and numbered markers to final pixels."""
+    size=None
+    if scene.get('image'):
+        from PIL import Image
+        source=Path(scene['image']);source=source if source.is_absolute() else base/source
+        with Image.open(source) as im:size=im.size
+    protected=[];markers=[]
+    for i,region in enumerate(scene.get('protected_regions',[]),1):
+        x,y,w,h=[float(region[k]) for k in ('x','y','width','height')]
+        if not all(math.isfinite(v) for v in (x,y,w,h)) or w<=0 or h<=0:raise ValueError('Invalid protected region')
+        space=region.get('space','image' if size else 'frame')
+        if space=='image':
+            if size is None:raise ValueError('Image-space protected region needs scene.image')
+            a,b=image_point(x,y,size,style.get('picture_height',670));c,d=image_point(x+w,y+h,size,style.get('picture_height',670))
+            x,y,w,h=a,b,c-a,d-b
+        elif space!='frame':raise ValueError('Protected region space must be image or frame')
+        if x<0 or y<0 or x+w>1920 or y+h>1080:raise ValueError('Protected region is outside final frame')
+        protected.append({'label':str(region.get('label',f'region-{i}')),'x':x,'y':y,'width':w,'height':h})
+    if size:
+        for marker in scene.get('callouts',[]):
+            x,y=image_point(marker['x'],marker['y'],size,style.get('picture_height',670))
+            markers.append({'x':x-27,'y':y-27,'width':54,'height':54})
+    return protected,markers
 
 def pointer_plan(scene,seconds,base,style=None):
     config=scene.get('pointer')

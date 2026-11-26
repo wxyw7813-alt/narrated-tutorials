@@ -58,7 +58,7 @@ python3 scripts/studio.py listen --language en --gender female --output ./auditi
 | `captions` | 原文与译文配对；已有音频还需要 start/end 秒数，见 [subtitles.md](subtitles.md) |
 | `audio_origin` | 导入音频来源：`synthetic`、`human-recording` 或默认 `provided-unknown` |
 
-同一场景不能同时使用 video 与 image/callouts。截图中的指针动画属于后期引导，已有录屏中的真实指针可以直接保留；视频场景也可使用 frame 坐标加指针覆盖。录屏按旁白时长截取，素材不够长时定格最后一帧；需要动作逐步同步时，应细分场景和指定 `video_start`。本版本不会自动理解屏幕动作或启动桌面录屏。分镜配置里安排的后期指针不会操作用户的实际桌面。
+同一场景不能同时使用 video 与 image/callouts。截图中的指针动画属于后期引导，已有录屏中的真实指针可以直接保留；视频场景也可使用 frame 坐标加指针覆盖。录屏按旁白时长截取（需要完整保留动作时设置 min_seconds 下限），素材不够长时定格最后一帧；需要动作逐步同步时，应细分场景和指定 `video_start`。本版本不会自动理解屏幕动作或启动桌面录屏；真实网页动作可用可选 Playwright capture，见 [browser-capture.md](browser-capture.md)。分镜配置里安排的后期指针不会操作用户的实际桌面。
 
 ```sh
 .venv/bin/python scripts/studio.py render project.json --output result --allow-online
@@ -75,6 +75,7 @@ python3 scripts/studio.py listen --language en --gender female --output ./auditi
 - `chapters.txt`：章节开始时间。
 - `provenance.json`：声线设置、音轨时长、字幕时间来源、文件散列、素材说明。
 - `preview.html`：本地播放器。
+- `review.html`、`review.json`、`contact-sheet.png`、`review-frames/`：实际成片验收页、自动检查与关键帧；人工检查初始待确认，见 [quality-review.md](quality-review.md)。
 - `work/`：中间图片、音轨和视频片段，属于项目私有材料，不随 Skill 分发。
 
 新字幕流程默认按完整语句合成并测量实际 PCM 声音起止；不再按整段时长或字数估算。中间分镜采用 PCM 音轨，全部拼接后只编码一次 AAC，避免逐段编码补齐带来的累积偏差。这是按句同步，不是逐字卡拉 OK 对齐。生成结果应人工检查漏字、术语发音和内容准确性；音频文件通过解码测试不能代替试听。
@@ -84,3 +85,11 @@ python3 scripts/studio.py listen --language en --gender female --output ./auditi
 分享 `narrated-tutorials` 整个文件夹或它的 ZIP。对方解压到其 Codex 的 `~/.codex/skills/narrated-tutorials/`，在新对话里使用 `$narrated-tutorials`。其他支持 SKILL.md 的代理可放入其文档规定的 Skill 目录；未逐一验证所有代理兼容性。
 
 对方仍需安装运行依赖。Skill 是供代理遵循的工作说明和工具，不是安装后自动拥有全部模型的独立视频软件。参考录音、本人授权记录和 API key 及 local-engines.json 本机配置都留在各自电脑，不发给他人；API key 只从环境变量读取。
+
+## 新增制作方式
+
+[模板与样片预览](preview-and-templates.md)：template 选择主题，style 覆盖细节，scene.flow 绘制 2–4 个流程框。
+
+[真实网页采集](browser-capture.md)：可选 Node + Playwright 独立运行；其他制作与试听不依赖它。
+
+[验收说明](quality-review.md)：protected_regions 标记不能遮挡的区域；min_seconds 保留长于配音的动作；每次合成输出验收报告。

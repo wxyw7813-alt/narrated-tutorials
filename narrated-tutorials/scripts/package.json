@@ -1,0 +1,10 @@
+{
+  "name": "narrated-tutorials-capture",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Optional real browser capture for the narrated-tutorials skill",
+  "type": "module",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}
