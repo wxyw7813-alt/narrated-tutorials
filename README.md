@@ -111,6 +111,10 @@ python3 narrated-tutorials/scripts/studio.py listen --language en --gender femal
 
 详细状态与来源见 [工具清单](narrated-tutorials/references/toolchain.md) 和 [第三方来源](narrated-tutorials/references/sources.md)。模型、依赖与在线服务有各自的使用条件；仓库不捆绑模型权重。
 
+## 完全不会时，怎样提出需求
+
+[查看可直接复制的需求描述与三阶段时序图](docs/beginner-guide/index.html)（下载后打开 HTML）。时序图依次覆盖研究与实操、素材与样片、检查与交付，并标明工具条件和需要使用者参与的环节。
+
 ## 装到 Codex
 
 1. 下载本仓库（GitHub 的 **Code → Download ZIP**），或 `git clone`。
